@@ -2,6 +2,14 @@ provider "aws" {
   region = "eu-central-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "mytfstates"
+    key = "stage/services/webserver-cluster/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
+
 resource "aws_launch_configuration" "example" {
   image_id = "ami-bf2ba8d0"
   instance_type = "t2.micro"
